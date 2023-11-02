@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Rating from "@mui/material/Rating";
-import product from "./component/Products.json";
+import product from "../component/Products.json"
 import Link from "next/link";
 
 const PriceSection = ["10", "50", "100"];
@@ -12,23 +12,24 @@ const CategorySection = [
   "electronics",
 ];
 
+
 export default function page() {
   const [selectedPrice, setSelectedPrice] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
+
   const [pageActive, setPageActive] = useState(false);
 
-  const pageOneProduct = product.slice(1, 10);
+  const pageOneProduct = product.slice(10, 20);
 
   const selectedPriceNumber = parseFloat(selectedPrice);
-
-
 
   // Filter data
   const filteredData = pageOneProduct.filter(
     (entry) =>
       (selectedPrice === "" || entry.price < selectedPriceNumber) &&
       (selectedCategory === "" || entry.category === selectedCategory)
+     
   );
 
   const handlePriceSelect = (topic: string) => {
@@ -48,14 +49,15 @@ export default function page() {
     console.log(selectedCategory);
   };
 
-  return (
+
+
+  return ( 
     <main className="my-5 max-w-5xl mx-auto bg-[#FFFFFF]">
-      <h1 className="filter-heading mb-10">Filter Page-Page 1</h1>
+      <h1 className="filter-heading mb-10">Filter Page-Page 2</h1>
       <section className="filter-container flex justify-between">
         {/* slection by price */}
         <div className="filter-item">
           <label>Select Price:</label>
-
           <select
             onChange={(e) => handlePriceSelect(e.target.value)}
             value={selectedPrice}
@@ -71,6 +73,7 @@ export default function page() {
             })}
           </select>
         </div>
+
 
         {/* slection by Category */}
         <div className="filter-item">
@@ -123,13 +126,10 @@ export default function page() {
         <Link className="text-2xl" href="pageTwo">
           &laquo;
         </Link>
-        <Link
-          href="/"
-          className={`page-btn ${pageActive ? "" : "page-btn-active"}`}
-        >
+        <Link href="/" className="page-btn page-btn-hover">
           1
         </Link>
-        <Link href="pageTwo" className={`page-btn page-btn-hover`}>
+        <Link href="pageTwo" className={`page-btn ${pageActive ? '':'page-btn-active'}`}>
           2
         </Link>
         <Link className="text-2xl" href="/">
